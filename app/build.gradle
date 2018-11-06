@@ -32,4 +32,6 @@ dependencies {
     implementation project(':library')
     //流动背景
     implementation 'com.github.glomadrian:Grav:1.1'
+    //底部按钮
+    implementation 'com.nightonke:boommenu:2.1.1'
 }

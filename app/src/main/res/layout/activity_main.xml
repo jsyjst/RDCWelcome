@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true"
     android:background="@drawable/bubble_background">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="研发招新"
+        android:id="@+id/tv_welcome"
+        android:textColor="@color/style_purple"
+        android:layout_centerHorizontal="true"
+        android:textSize="40sp"/>
+
 
 
 
@@ -28,6 +39,17 @@
         app:shake_min_duration="10000"
         app:shake_max_duration="20000"
         app:shake_variance="500dp"
+        />
+    <com.nightonke.boommenu.BoomMenuButton
+        android:id="@+id/bmb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="30dp"
+        app:bmb_buttonEnum="textOutsideCircle"
+        app:bmb_piecePlaceEnum="piecePlace_dot_4_1"
+        app:bmb_buttonPlaceEnum="buttonPlace_sc_4_1"
         />
 
 

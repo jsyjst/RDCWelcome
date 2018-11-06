@@ -4,4 +4,10 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="white">#fff</color>
+    <color name="style_blue">#3926AF</color>
+    <color name="style_purple">#C46BD6</color>
+    <color name="android">#09f1d2</color>
+    <color name="web">#07d765</color>
+    <color name="java">#b7ff01</color>
+    <color name="data">#0fa2cf</color>
 </resources>
