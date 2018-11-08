@@ -1,22 +1,32 @@
 package com.rdc.rdcwelcome.view;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dingmouren.layoutmanagergroup.skidright.SkidRightLayoutManager;
 import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
 import com.nightonke.boommenu.BoomButtons.TextOutsideCircleButton;
 import com.nightonke.boommenu.BoomMenuButton;
-import com.nightonke.boommenu.Util;
+
+import com.rdc.adapter.GroupAdapter;
+import com.rdc.entiy.Group;
 import com.rdc.rdcwelcome.R;
 import com.rdc.rdcwelcome.utils.CommonUtil;
 import com.rdc.rdcwelcome.utils.Typefaces;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity {
     private TextView mWelcomeTv;
     private BoomMenuButton mBmb;
     private TextOutsideCircleButton.Builder mAndroidBuilder,mJavaBuilder,mWebBuilder,mDataBuilder;
+    private List<Group> mGroupList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +36,38 @@ public class MainActivity extends AppCompatActivity {
 
         initView();
         initBottom();
+        initData();
+        RecyclerView recyclerView = findViewById(R.id.recycler);
+        //1.4,0.5
+        SkidRightLayoutManager skidRightLayoutManager = new SkidRightLayoutManager(1.45f, 0.6f);
+        recyclerView.setLayoutManager(skidRightLayoutManager);
+        recyclerView.setAdapter(new GroupAdapter(this,mGroupList));
+    }
+    private void initData() {
+        Group group1 = new Group();
+        group1.setGroupName("安卓");
+        group1.setGroupImg(R.drawable.android_big);
+        mGroupList.add(group1);
+
+        Group group2 = new Group();
+        group2.setGroupImg(R.drawable.java_big);
+        group2.setGroupName("后台");
+        mGroupList.add(group2);
+
+        Group group3 = new Group();
+        group3.setGroupImg(R.drawable.web_big);
+        group3.setGroupName("前端");
+        mGroupList.add(group3);
+
+        Group group4 = new Group();
+        group4.setGroupImg(R.drawable.big_data);
+        group4.setGroupName("大数据");
+        mGroupList.add(group4);
+
+        Group group5 = new Group();
+        group5.setGroupImg(R.drawable.rdc);
+        group5.setGroupName("RDC研发中心");
+        mGroupList.add(group5);
     }
 
     private void initView() {

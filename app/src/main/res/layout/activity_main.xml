@@ -6,6 +6,7 @@
     android:fitsSystemWindows="true"
     android:background="@drawable/bubble_background">
 
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -13,7 +14,19 @@
         android:id="@+id/tv_welcome"
         android:textColor="@color/style_purple"
         android:layout_centerHorizontal="true"
-        android:textSize="40sp"/>
+        android:textSize="40sp"
+        android:layout_marginBottom="50dp"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/tv_welcome"
+        android:layout_marginBottom="50dp"
+        >
+
+    </android.support.v7.widget.RecyclerView>
 
 
 
@@ -51,6 +64,8 @@
         app:bmb_piecePlaceEnum="piecePlace_dot_4_1"
         app:bmb_buttonPlaceEnum="buttonPlace_sc_4_1"
         />
+
+
 
 
 </RelativeLayout>
