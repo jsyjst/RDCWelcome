@@ -25,6 +25,11 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder>{
 
     private List<Group> mGroupList;
     private Context mContext;
+    private ItemOnClick mItemOnClick;
+
+    public  void setItemOnClick(ItemOnClick itemOnClick){
+        mItemOnClick = itemOnClick;
+    }
 
     public GroupAdapter(Context context,List<Group> groupList){
         mGroupList=groupList;
@@ -40,10 +45,16 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder>{
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Group group = mGroupList.get(position);
         holder.groupImg.setImageResource(group.getGroupImg());
         holder.groupName.setText(group.getGroupName());
+        holder.groupImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mItemOnClick.itemOnClick(position);
+            }
+        });
     }
 
     @Override
@@ -60,5 +71,9 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder>{
             groupImg = itemView.findViewById(R.id.img_bg);
             groupName = itemView.findViewById(R.id.tv_title);
         }
+    }
+
+   public interface ItemOnClick{
+        void itemOnClick(int position);
     }
 }

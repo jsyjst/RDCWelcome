@@ -1,5 +1,6 @@
 package com.rdc.rdcwelcome.view;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -21,12 +22,15 @@ import com.rdc.rdcwelcome.utils.Typefaces;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.rdc.rdcwelcome.view.ContentActivity.GROUP_TYPE;
+
 
 public class MainActivity extends AppCompatActivity {
     private TextView mWelcomeTv;
     private BoomMenuButton mBmb;
     private TextOutsideCircleButton.Builder mAndroidBuilder,mJavaBuilder,mWebBuilder,mDataBuilder;
     private List<Group> mGroupList = new ArrayList<>();
+    private GroupAdapter mAapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,15 +43,24 @@ public class MainActivity extends AppCompatActivity {
         initData();
         RecyclerView recyclerView = findViewById(R.id.recycler);
         //1.4,0.5
-        SkidRightLayoutManager skidRightLayoutManager = new SkidRightLayoutManager(1.45f, 0.6f);
+        SkidRightLayoutManager skidRightLayoutManager = new SkidRightLayoutManager(1.4f, 0.7f);
         recyclerView.setLayoutManager(skidRightLayoutManager);
-        recyclerView.setAdapter(new GroupAdapter(this,mGroupList));
+        mAapter = new GroupAdapter(this,mGroupList);
+        recyclerView.setAdapter(mAapter);
+        mAapter.setItemOnClick(new GroupAdapter.ItemOnClick() {
+            @Override
+            public void itemOnClick(int position) {
+                Intent intent = new Intent(MainActivity.this,ContentActivity.class);
+                intent.putExtra(GROUP_TYPE,position);
+                startActivity(intent);
+            }
+        });
     }
     private void initData() {
-        Group group1 = new Group();
-        group1.setGroupName("安卓");
-        group1.setGroupImg(R.drawable.android_big);
-        mGroupList.add(group1);
+        Group group5 = new Group();
+        group5.setGroupImg(R.drawable.rdc);
+        group5.setGroupName("RDC研发中心");
+        mGroupList.add(group5);
 
         Group group2 = new Group();
         group2.setGroupImg(R.drawable.java_big);
@@ -59,15 +72,17 @@ public class MainActivity extends AppCompatActivity {
         group3.setGroupName("前端");
         mGroupList.add(group3);
 
+        Group group1 = new Group();
+        group1.setGroupName("安卓");
+        group1.setGroupImg(R.drawable.android_big);
+        mGroupList.add(group1);
+
         Group group4 = new Group();
         group4.setGroupImg(R.drawable.big_data);
         group4.setGroupName("大数据");
         mGroupList.add(group4);
 
-        Group group5 = new Group();
-        group5.setGroupImg(R.drawable.rdc);
-        group5.setGroupName("RDC研发中心");
-        mGroupList.add(group5);
+
     }
 
     private void initView() {
