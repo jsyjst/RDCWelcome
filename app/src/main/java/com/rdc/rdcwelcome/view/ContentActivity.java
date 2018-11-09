@@ -7,7 +7,9 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.transition.Slide;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,6 +33,7 @@ public class ContentActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         setContentView(R.layout.activity_content);
 
         initData();
@@ -69,6 +72,9 @@ public class ContentActivity extends AppCompatActivity {
     private void initData(){
         Intent intent = getIntent();
         mGroupType = intent.getIntExtra(GROUP_TYPE,-1);
+
+        Window window =getWindow();
+
     }
     private void onClick(){
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {

@@ -1,10 +1,18 @@
 package com.rdc.rdcwelcome.view;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.transition.ChangeBounds;
+import android.transition.Slide;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.Window;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +49,12 @@ public class MainActivity extends AppCompatActivity {
         initView();
         initBottom();
         initData();
+
+        Window window =getWindow();
+        window.setSharedElementEnterTransition(new ChangeBounds());
+        Slide slideTransition = new Slide(Gravity.LEFT);
+        slideTransition.setDuration(2000);
+        window.setExitTransition(slideTransition);
         RecyclerView recyclerView = findViewById(R.id.recycler);
         //1.4,0.5
         SkidRightLayoutManager skidRightLayoutManager = new SkidRightLayoutManager(1.4f, 0.7f);
@@ -52,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
             public void itemOnClick(int position) {
                 Intent intent = new Intent(MainActivity.this,ContentActivity.class);
                 intent.putExtra(GROUP_TYPE,position);
-                startActivity(intent);
+                startActivity(intent,ActivityOptions.makeSceneTransitionAnimation(MainActivity.this).toBundle());
             }
         });
     }
