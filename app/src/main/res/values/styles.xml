@@ -10,8 +10,9 @@
         <item name="android:windowContentTransitions">true</item>
 
         <!-- 指定进入和退出transitions -->
-        <item name="android:windowEnterTransition">@transition/explode_bounce</item>
-        <item name="android:windowExitTransition">@transition/explode_bounce</item>
-       <!-- 指定shared element transitions -->    </style>
+        <item name="android:windowEnterTransition">@transition/change_image_transform</item>
+        <item name="android:windowExitTransition">@transition/change_image_transform</item>
+       <!-- 指定shared element transitions -->
+    </style>
 
 </resources>

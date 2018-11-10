@@ -17,7 +17,7 @@
             android:id="@+id/img_bg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="fitXY"
+            android:scaleType="centerCrop"
             android:transitionName="group_img"
             />
 
@@ -29,7 +29,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginLeft="16dp"
             android:text="Confidence"
-            android:textColor="#01fa6d"
+            android:textColor="@color/android"
             android:textSize="30sp"
             android:textStyle="bold"
             android:transitionName="title_1"

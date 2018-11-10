@@ -28,7 +28,7 @@ public class Content {
             "是计算机学院一个最为老牌的团队。"};
 
     public static final int[] IMG = {
-            R.drawable.rdc,
+            R.drawable.rdc_small,
             R.drawable.java_big,
             R.drawable.web_big,
             R.drawable.android_big,

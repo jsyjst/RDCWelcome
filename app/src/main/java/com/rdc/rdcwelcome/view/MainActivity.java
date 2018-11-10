@@ -50,11 +50,6 @@ public class MainActivity extends AppCompatActivity {
         initBottom();
         initData();
 
-        Window window =getWindow();
-        window.setSharedElementEnterTransition(new ChangeBounds());
-        Slide slideTransition = new Slide(Gravity.LEFT);
-        slideTransition.setDuration(2000);
-        window.setExitTransition(slideTransition);
         RecyclerView recyclerView = findViewById(R.id.recycler);
         //1.4,0.5
         SkidRightLayoutManager skidRightLayoutManager = new SkidRightLayoutManager(1.4f, 0.7f);
@@ -63,37 +58,38 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(mAapter);
         mAapter.setItemOnClick(new GroupAdapter.ItemOnClick() {
             @Override
-            public void itemOnClick(int position) {
+            public void itemOnClick(int position,View v) {
                 Intent intent = new Intent(MainActivity.this,ContentActivity.class);
                 intent.putExtra(GROUP_TYPE,position);
-                startActivity(intent,ActivityOptions.makeSceneTransitionAnimation(MainActivity.this).toBundle());
+                startActivity(intent,ActivityOptions.
+                        makeSceneTransitionAnimation(MainActivity.this,v,"group_img").toBundle());
             }
         });
     }
     private void initData() {
         Group group5 = new Group();
-        group5.setGroupImg(R.drawable.rdc);
+        group5.setGroupImg(R.drawable.rdc_small);
         group5.setGroupName("RDC研发中心");
         mGroupList.add(group5);
 
         Group group2 = new Group();
         group2.setGroupImg(R.drawable.java_big);
-        group2.setGroupName("后台");
+        group2.setGroupName("Java后台");
         mGroupList.add(group2);
 
         Group group3 = new Group();
         group3.setGroupImg(R.drawable.web_big);
-        group3.setGroupName("前端");
+        group3.setGroupName("Web前端");
         mGroupList.add(group3);
 
         Group group1 = new Group();
-        group1.setGroupName("安卓");
+        group1.setGroupName("Android安卓");
         group1.setGroupImg(R.drawable.android_big);
         mGroupList.add(group1);
 
         Group group4 = new Group();
         group4.setGroupImg(R.drawable.big_data);
-        group4.setGroupName("大数据");
+        group4.setGroupName("BigData大数据");
         mGroupList.add(group4);
 
 
