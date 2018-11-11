@@ -20,6 +20,7 @@ public class Content {
     };
 
     public static final String[] NAME = {"RDC 研发中心","Java 后台", "Web 前端", "Android 移动", "BigData 大数据"};
+    public static final String[] NAME_SIGN = {"RDC研发中心","后台", "前端", "Android", "大数据"};
     public static final String[] SUMMARY = {"     主要进行Java后台服务器开发如JavaWeb 应用服务器的开发和维护。", "     基于HTML/CSS/JS开发，专注于网站界面以及提供更好的视觉冲击和用户体验。"
             , "     主要专注基于Java 语言的App 开发与Android 前沿技术的专研与发展。", "     致力于" +
             "挖掘数据、分析数据。既专注于基础，" +

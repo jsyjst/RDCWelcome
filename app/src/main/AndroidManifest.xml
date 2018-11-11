@@ -17,7 +17,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.MainActivity" />
-        <activity android:name=".view.ContentActivity"></activity>
+        <activity android:name=".view.ContentActivity" />
+        <activity android:name=".view.SignUpActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" >
+
+        </activity>
     </application>
 
 </manifest>

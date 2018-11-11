@@ -9,14 +9,17 @@
     <color name="style_purple">#C46BD6</color>
     <color name="rdc">#4b04ff</color>
     <color name="android">#09f1d2</color>
+    <color name="black_short">#606060</color>
     <color name="web">#07d765</color>
-    <color name="data">#b7ff01</color>
+    <color name="data">#9006ec</color>
     <color name="java">#0fa2cf</color>
     <color name="translucent">#80ffffff</color>
+    <color name="android_title_translucent">#80bebebe</color>
     <color name="rdc_title">#018dc2</color>
     <color name="java_title">#cb0806</color>
     <color name="web_title">#67a969</color>
     <color name="android_title">#bebebe</color>
     <color name="data_title">#137c7a</color>
     <color name="rdc_back">#23beae</color>
+    <color name="rdc_title_translucent">#8023beae</color>
 </resources>

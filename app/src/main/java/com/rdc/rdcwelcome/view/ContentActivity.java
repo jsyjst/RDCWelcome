@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 
@@ -81,6 +82,13 @@ public class ContentActivity extends AppCompatActivity {
             }
         });
 
+        mSingUpFat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toSignUpActivity(mGroupType);
+            }
+        });
+
     }
     private void changeColor(){
         //按钮的颜色改变
@@ -102,5 +110,11 @@ public class ContentActivity extends AppCompatActivity {
             mToolbar.setNavigationIcon(R.drawable.back);
             mCollapsingTool.setCollapsedTitleTextColor(getResources().getColor(R.color.rdc_back));
         }
+    }
+
+    private void toSignUpActivity(int groupType){
+        Intent intent = new Intent(ContentActivity.this, SignUpActivity.class);
+        intent.putExtra(ContentActivity.GROUP_TYPE, groupType);
+        startActivity(intent);
     }
 }

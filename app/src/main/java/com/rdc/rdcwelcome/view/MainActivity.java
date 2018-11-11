@@ -2,19 +2,11 @@ package com.rdc.rdcwelcome.view;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
-import android.transition.ChangeBounds;
-import android.transition.Slide;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.dingmouren.layoutmanagergroup.skidright.SkidRightLayoutManager;
 import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
@@ -36,7 +28,7 @@ import static com.rdc.rdcwelcome.view.ContentActivity.GROUP_TYPE;
 public class MainActivity extends AppCompatActivity {
     private TextView mWelcomeTv;
     private BoomMenuButton mBmb;
-    private TextOutsideCircleButton.Builder mAndroidBuilder,mJavaBuilder,mWebBuilder,mDataBuilder;
+    private TextOutsideCircleButton.Builder mAndroidBuilder, mJavaBuilder, mWebBuilder, mDataBuilder,mRdcBuilder;
     private List<Group> mGroupList = new ArrayList<>();
     private GroupAdapter mAapter;
 
@@ -54,18 +46,19 @@ public class MainActivity extends AppCompatActivity {
         //1.4,0.5
         SkidRightLayoutManager skidRightLayoutManager = new SkidRightLayoutManager(1.4f, 0.7f);
         recyclerView.setLayoutManager(skidRightLayoutManager);
-        mAapter = new GroupAdapter(this,mGroupList);
+        mAapter = new GroupAdapter(this, mGroupList);
         recyclerView.setAdapter(mAapter);
         mAapter.setItemOnClick(new GroupAdapter.ItemOnClick() {
             @Override
-            public void itemOnClick(int position,View v) {
-                Intent intent = new Intent(MainActivity.this,ContentActivity.class);
-                intent.putExtra(GROUP_TYPE,position);
-                startActivity(intent,ActivityOptions.
-                        makeSceneTransitionAnimation(MainActivity.this,v,"group_img").toBundle());
+            public void itemOnClick(int position, View v) {
+                Intent intent = new Intent(MainActivity.this, ContentActivity.class);
+                intent.putExtra(GROUP_TYPE, position);
+                startActivity(intent, ActivityOptions.
+                        makeSceneTransitionAnimation(MainActivity.this, v, "group_img").toBundle());
             }
         });
     }
+
     private void initData() {
         Group group5 = new Group();
         group5.setGroupImg(R.drawable.rdc_small);
@@ -106,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
         mJavaBuilder = new TextOutsideCircleButton.Builder();
         mWebBuilder = new TextOutsideCircleButton.Builder();
         mDataBuilder = new TextOutsideCircleButton.Builder();
+        mRdcBuilder = new TextOutsideCircleButton.Builder();
 
         mJavaBuilder.normalImageRes(R.drawable.java)
                 .normalText("后台")
@@ -113,47 +107,66 @@ public class MainActivity extends AppCompatActivity {
                 .textSize(15)
                 .normalColorRes(R.color.java)
                 .listener(new OnBMClickListener() {
-            @Override
-            public void onBoomButtonClick(int index) {
-                Toast.makeText(MainActivity.this,"报名后台",Toast.LENGTH_SHORT).show();
-            }
-        });
+                    @Override
+                    public void onBoomButtonClick(int index) {
+                        toSignUpActivity(1);
+                    }
+                });
         mWebBuilder.normalImageRes(R.drawable.web)
                 .normalText("前端").normalColorRes(R.color.web)
                 .typeface(Typefaces.get(this, "chinese.ttf"))
                 .textSize(15)
                 .listener(new OnBMClickListener() {
-            @Override
-            public void onBoomButtonClick(int index) {
-                Toast.makeText(MainActivity.this,"报名前端",Toast.LENGTH_SHORT).show();
-            }
-        });
+                    @Override
+                    public void onBoomButtonClick(int index) {
+                        toSignUpActivity(2);
+                    }
+                });
+        mRdcBuilder.normalImageRes(R.drawable.rdc_icon)
+                .normalText("研发中心")
+                .typeface(Typefaces.get(this, "chinese.ttf"))
+                .textSize(15)
+                .normalColorRes(R.color.rdc)
+                .listener(new OnBMClickListener() {
+                    @Override
+                    public void onBoomButtonClick(int index) {
+                        toSignUpActivity(0);
+                    }
+                });
         mAndroidBuilder.normalImageRes(R.drawable.android)
                 .normalText("安卓")
                 .typeface(Typefaces.get(this, "chinese.ttf"))
                 .textSize(15)
                 .normalColorRes(R.color.android)
                 .listener(new OnBMClickListener() {
-            @Override
-            public void onBoomButtonClick(int index) {
-                Toast.makeText(MainActivity.this,"报名安卓",Toast.LENGTH_SHORT).show();
-            }
-        });
+                    @Override
+                    public void onBoomButtonClick(int index) {
+                        toSignUpActivity(3);
+                    }
+                });
         mDataBuilder.normalImageRes(R.drawable.data)
                 .normalText("大数据")
                 .typeface(Typefaces.get(this, "chinese.ttf"))
                 .textSize(15)
                 .normalColorRes(R.color.data)
                 .listener(new OnBMClickListener() {
-            @Override
-            public void onBoomButtonClick(int index) {
-                Toast.makeText(MainActivity.this,"报名大数据",Toast.LENGTH_SHORT).show();
-            }
-        });
+                    @Override
+                    public void onBoomButtonClick(int index) {
+                        toSignUpActivity(4);
+                    }
+                });
+
         mBmb.addBuilder(mJavaBuilder);
         mBmb.addBuilder(mWebBuilder);
+        mBmb.addBuilder(mRdcBuilder);
         mBmb.addBuilder(mAndroidBuilder);
         mBmb.addBuilder(mDataBuilder);
 
+    }
+
+    private void toSignUpActivity(int groupType) {
+        Intent intent = new Intent(MainActivity.this, SignUpActivity.class);
+        intent.putExtra(ContentActivity.GROUP_TYPE, groupType);
+        startActivity(intent);
     }
 }
