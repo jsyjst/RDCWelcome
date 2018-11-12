@@ -133,10 +133,24 @@ public class SignUpActivity extends AppCompatActivity {
                     ActivityCompat.requestPermissions(SignUpActivity.this,
                             new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
                 } else {
-                    if(circularButtonSubmit.getProgress()==100||circularButtonSubmit.getProgress()==-1){
+                    if (circularButtonSubmit.getProgress() == 100 || circularButtonSubmit.getProgress() == -1) {
                         circularButtonSubmit.setProgress(0);
-                    }else{
-                        upLoadBmob();
+                    } else {
+                        if (getString(editName).equals("")
+                                || getString(editSex).equals("")
+                                ||getString(editCollege).equals("")
+                                ||getString(editClass).equals("")
+                                ||getString(editPhoneNum).equals("")
+                                ||getString(editWork).equals("")
+                                ||getString(editQq).equals("")
+                                ||getString(editEmail).equals("")
+                                ||getString(editSkill).equals("")
+                                ||getString(editIntroduction).equals("")
+                                ||getString(editHope).equals("") ){
+                            Toast.makeText(SignUpActivity.this, "旅途未开启，请补全报名表", Toast.LENGTH_SHORT).show();
+                        } else {
+                            upLoadBmob();
+                        }
                     }
                 }
             }
@@ -236,7 +250,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private String getString(EditText editText) {
-        return editText.getText().toString();
+        return editText.getText().toString().trim();
     }
 
     @Override
@@ -244,13 +258,13 @@ public class SignUpActivity extends AppCompatActivity {
         switch (requestCode) {
             case 1:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    if(circularButtonSubmit.getProgress()==100||circularButtonSubmit.getProgress()==-1){
+                    if (circularButtonSubmit.getProgress() == 100 || circularButtonSubmit.getProgress() == -1) {
                         circularButtonSubmit.setProgress(0);
-                    }else{
+                    } else {
                         upLoadBmob();
                     }
                 } else {
-                    Toast.makeText(this, "未获取到权限无法提交", Toast.LENGTH_SHORT);
+                    Toast.makeText(this, "未获取到权限无法提交", Toast.LENGTH_SHORT).show();
                 }
                 break;
             default:
@@ -272,6 +286,7 @@ public class SignUpActivity extends AppCompatActivity {
         });
         widthAnimation.start();
     }
+
     //失败时候的动画
     private void simulateErrorProgress(final CircularProgressButton button) {
         ValueAnimator widthAnimation = ValueAnimator.ofInt(1, 99);
