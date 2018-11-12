@@ -4,6 +4,9 @@ package com.rdc.constant;
 import com.rdc.rdcwelcome.R;
 
 public class Content {
+    public static final String APPLICATION_ID="2da1c9cb45f2f9c03973db75a0c67734";
+    public static final int BUTTON_DURATION=1500;
+
     public static final int[] COLOR = {
             R.color.rdc,
             R.color.java,

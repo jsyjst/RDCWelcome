@@ -59,4 +59,6 @@ dependencies {
     implementation 'com.rengwuxian.materialedittext:library:2.1.4'
     //radioButton
     implementation 'com.github.rey5137:material:1.2.5'
+    //bomb
+    implementation 'cn.bmob.android:bmob-sdk:3.6.3'
 }
