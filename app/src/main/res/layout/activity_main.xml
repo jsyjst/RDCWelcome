@@ -7,23 +7,22 @@
     android:background="@drawable/background">
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="研发招新"
-        android:id="@+id/tv_welcome"
-        android:textColor="@color/style_purple"
-        android:layout_centerHorizontal="true"
-        android:textSize="40sp"
-        android:layout_marginBottom="50dp"/>
+   <ImageView
+       android:id="@+id/iv_welcome"
+       android:layout_marginTop="10dp"
+       android:layout_marginBottom="30dp"
+       android:layout_width="match_parent"
+       android:layout_height="70dp"
+       android:src="@drawable/welcome"
+       />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
-        android:layout_below="@+id/tv_welcome"
-        android:layout_marginBottom="100dp"
+        android:layout_below="@+id/iv_welcome"
+        android:layout_above="@+id/bmb"
         >
 
     </android.support.v7.widget.RecyclerView>
@@ -58,8 +57,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        app:bmb_boomEnum="boomParabola_4"
         app:bmb_buttonEnum="textOutsideCircle"
         app:bmb_piecePlaceEnum="piecePlace_dot_5_3"
         app:bmb_buttonPlaceEnum="buttonPlace_sc_5_3"

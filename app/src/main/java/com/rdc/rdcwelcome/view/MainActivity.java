@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recycler);
         //1.4,0.5
-        SkidRightLayoutManager skidRightLayoutManager = new SkidRightLayoutManager(1.4f, 0.7f);
+        SkidRightLayoutManager skidRightLayoutManager = new SkidRightLayoutManager(1.175f, 0.3f);
         recyclerView.setLayoutManager(skidRightLayoutManager);
         mAapter = new GroupAdapter(this, mGroupList);
         recyclerView.setAdapter(mAapter);
@@ -62,12 +62,12 @@ public class MainActivity extends AppCompatActivity {
     private void initData() {
         Group group5 = new Group();
         group5.setGroupImg(R.drawable.rdc_small);
-        group5.setGroupName("RDC研发中心");
+        group5.setGroupName("RDC 研发中心");
         mGroupList.add(group5);
 
         Group group2 = new Group();
         group2.setGroupImg(R.drawable.java_big);
-        group2.setGroupName("Java后台");
+        group2.setGroupName("Java 后台");
         mGroupList.add(group2);
 
         Group group3 = new Group();
@@ -76,21 +76,21 @@ public class MainActivity extends AppCompatActivity {
         mGroupList.add(group3);
 
         Group group1 = new Group();
-        group1.setGroupName("Android安卓");
+        group1.setGroupName("Android 移动");
         group1.setGroupImg(R.drawable.android_big);
         mGroupList.add(group1);
 
         Group group4 = new Group();
         group4.setGroupImg(R.drawable.big_data);
-        group4.setGroupName("BigData大数据");
+        group4.setGroupName("BigData 大数据");
         mGroupList.add(group4);
 
 
     }
 
     private void initView() {
-        mWelcomeTv = findViewById(R.id.tv_welcome);
-        mWelcomeTv.setTypeface(Typefaces.get(this, "chinese.ttf"));
+//       mWelcomeTv = findViewById(R.id.tv_welcome);
+//        mWelcomeTv.setTypeface(Typefaces.get(this, "chinese.ttf"));
         mBmb = findViewById(R.id.bmb);
     }
 

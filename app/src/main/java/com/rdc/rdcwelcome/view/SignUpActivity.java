@@ -11,6 +11,11 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
+import android.transition.Fade;
+import android.transition.Slide;
+import android.transition.Transition;
+import android.transition.TransitionInflater;
+import android.transition.TransitionSet;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -87,7 +92,9 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setStatusBarColor(getResources().getColor(R.color.android));
+
         setContentView(R.layout.activity_sign_up);
+        setupWindowAnimations();
 
         Bmob.initialize(this, Content.APPLICATION_ID); //初始化BombSdk
         ButterKnife.bind(this);
@@ -261,7 +268,21 @@ public class SignUpActivity extends AppCompatActivity {
                     if (circularButtonSubmit.getProgress() == 100 || circularButtonSubmit.getProgress() == -1) {
                         circularButtonSubmit.setProgress(0);
                     } else {
-                        upLoadBmob();
+                        if (getString(editName).equals("")
+                                || getString(editSex).equals("")
+                                ||getString(editCollege).equals("")
+                                ||getString(editClass).equals("")
+                                ||getString(editPhoneNum).equals("")
+                                ||getString(editWork).equals("")
+                                ||getString(editQq).equals("")
+                                ||getString(editEmail).equals("")
+                                ||getString(editSkill).equals("")
+                                ||getString(editIntroduction).equals("")
+                                ||getString(editHope).equals("") ){
+                            Toast.makeText(SignUpActivity.this, "旅途未开启，请补全报名表", Toast.LENGTH_SHORT).show();
+                        } else {
+                            upLoadBmob();
+                        }
                     }
                 } else {
                     Toast.makeText(this, "未获取到权限无法提交", Toast.LENGTH_SHORT).show();
@@ -303,6 +324,11 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
         widthAnimation.start();
+    }
+
+    private void setupWindowAnimations() {
+        Transition slide= TransitionInflater.from(this).inflateTransition(R.transition.slide_right);
+        getWindow().setEnterTransition(slide);
     }
 
 }

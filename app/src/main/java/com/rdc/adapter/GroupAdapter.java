@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
+import com.rdc.constant.Content;
 import com.rdc.entiy.Group;
 import com.rdc.rdcwelcome.R;
 import com.rdc.rdcwelcome.utils.Typefaces;
@@ -50,6 +50,7 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder>{
         Group group = mGroupList.get(position);
         holder.groupImg.setImageResource(group.getGroupImg());
         holder.groupName.setText(group.getGroupName());
+        holder.groupName.setTextColor(mContext.getResources().getColor(Content.COLOR[position]));
         holder.groupName.setTypeface(Typefaces.get(mContext,"chinese.ttf"));
         holder.groupImg.setOnClickListener(new View.OnClickListener() {
             @Override

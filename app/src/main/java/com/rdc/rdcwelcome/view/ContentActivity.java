@@ -1,5 +1,6 @@
 package com.rdc.rdcwelcome.view;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -12,6 +13,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.transition.Slide;
+import android.transition.Transition;
+import android.transition.TransitionInflater;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -115,6 +118,7 @@ public class ContentActivity extends AppCompatActivity {
     private void toSignUpActivity(int groupType){
         Intent intent = new Intent(ContentActivity.this, SignUpActivity.class);
         intent.putExtra(ContentActivity.GROUP_TYPE, groupType);
-        startActivity(intent);
+        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
     }
+
 }

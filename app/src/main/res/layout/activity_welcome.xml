@@ -11,7 +11,7 @@
         android:text="Welcome TO RDC"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#3926AF"
+        android:textColor="#fca72e"
         android:textSize="40sp"
         android:layout_centerHorizontal="true"
         android:layout_above="@+id/electric_fan_view"/>
