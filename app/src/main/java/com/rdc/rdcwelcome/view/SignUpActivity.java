@@ -30,6 +30,7 @@ import com.rdc.entiy.Person;
 import com.rdc.rdcwelcome.R;
 import com.rdc.rdcwelcome.utils.Typefaces;
 import com.rengwuxian.materialedittext.MaterialEditText;
+import com.rengwuxian.materialedittext.validation.RegexpValidator;
 import com.rey.material.widget.RadioButton;
 
 import butterknife.BindView;
@@ -87,6 +88,7 @@ public class SignUpActivity extends AppCompatActivity {
     CircularProgressButton circularButtonSubmit;
     private int mGroupType;
     private String mGroup;
+    private RegexpValidator numValidator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,6 +147,7 @@ public class SignUpActivity extends AppCompatActivity {
                     } else {
                         if (getString(editName).equals("")
                                 || getString(editSex).equals("")
+                                ||getString(editStudentId).equals("")
                                 ||getString(editCollege).equals("")
                                 ||getString(editClass).equals("")
                                 ||getString(editPhoneNum).equals("")
@@ -153,8 +156,11 @@ public class SignUpActivity extends AppCompatActivity {
                                 ||getString(editEmail).equals("")
                                 ||getString(editSkill).equals("")
                                 ||getString(editIntroduction).equals("")
-                                ||getString(editHope).equals("") ){
+                                ||getString(editHope).equals("")){
                             Toast.makeText(SignUpActivity.this, "旅途未开启，请补全报名表", Toast.LENGTH_SHORT).show();
+                        } else if(!editStudentId.validate()||!editPhoneNum.validate()||!editQq.validate()){
+                            Toast.makeText(SignUpActivity.this,"学号、手机号码、QQ"
+                                    +numValidator.getErrorMessage(),Toast.LENGTH_SHORT).show();
                         } else {
                             upLoadBmob();
                         }
@@ -165,6 +171,8 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void setColor() {
+
+
         mTitle.setText(Content.NAME_SIGN[mGroupType] + "报名表");
         mToolbar.setBackgroundResource(Content.COLOR[mGroupType]);
         getWindow().setStatusBarColor(getResources().getColor(Content.COLOR[mGroupType]));
@@ -181,6 +189,11 @@ public class SignUpActivity extends AppCompatActivity {
         editSkill.setPrimaryColor(getResources().getColor(Content.COLOR[mGroupType]));
         editIntroduction.setPrimaryColor(getResources().getColor(Content.COLOR[mGroupType]));
         editHope.setPrimaryColor(getResources().getColor(Content.COLOR[mGroupType]));
+        //只能输入数字
+        numValidator = new RegexpValidator("只能输入数字","\\d+");
+        editStudentId.addValidator(numValidator);
+        editPhoneNum.addValidator(numValidator);
+        editQq.addValidator(numValidator);
 
     }
 
@@ -268,8 +281,10 @@ public class SignUpActivity extends AppCompatActivity {
                     if (circularButtonSubmit.getProgress() == 100 || circularButtonSubmit.getProgress() == -1) {
                         circularButtonSubmit.setProgress(0);
                     } else {
+                        Log.d(TAG, "onRequestPermissionsResult: ");
                         if (getString(editName).equals("")
                                 || getString(editSex).equals("")
+                                ||getString(editStudentId).equals("")
                                 ||getString(editCollege).equals("")
                                 ||getString(editClass).equals("")
                                 ||getString(editPhoneNum).equals("")
@@ -280,7 +295,10 @@ public class SignUpActivity extends AppCompatActivity {
                                 ||getString(editIntroduction).equals("")
                                 ||getString(editHope).equals("") ){
                             Toast.makeText(SignUpActivity.this, "旅途未开启，请补全报名表", Toast.LENGTH_SHORT).show();
-                        } else {
+                        } else if(!editStudentId.validate()||!editPhoneNum.validate()||!editQq.validate()){
+                            Toast.makeText(SignUpActivity.this,"学号、手机号码、QQ"
+                                    +numValidator.getErrorMessage(),Toast.LENGTH_SHORT).show();
+                        }else {
                             upLoadBmob();
                         }
                     }

@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recycler);
         //1.4,0.5
-        SkidRightLayoutManager skidRightLayoutManager = new SkidRightLayoutManager(1.175f, 0.3f);
+        SkidRightLayoutManager skidRightLayoutManager = new SkidRightLayoutManager(1.175f, 0.35f);
         recyclerView.setLayoutManager(skidRightLayoutManager);
         mAapter = new GroupAdapter(this, mGroupList);
         recyclerView.setAdapter(mAapter);
