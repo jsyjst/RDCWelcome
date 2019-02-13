@@ -5,7 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.dingmouren.layoutmanagergroup.skidright.SkidRightLayoutManager;
@@ -13,12 +16,14 @@ import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
 import com.nightonke.boommenu.BoomButtons.TextOutsideCircleButton;
 import com.nightonke.boommenu.BoomMenuButton;
 
-import com.rdc.adapter.GroupAdapter;
-import com.rdc.entiy.Group;
+import com.rdc.rdcwelcome.adapter.GroupAdapter;
+import com.rdc.rdcwelcome.entiy.Group;
 import com.rdc.rdcwelcome.R;
 import com.rdc.rdcwelcome.utils.CommonUtil;
+import com.rdc.rdcwelcome.utils.ScreenUtils;
 import com.rdc.rdcwelcome.utils.Typefaces;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,37 +31,25 @@ import static com.rdc.rdcwelcome.view.ContentActivity.GROUP_TYPE;
 
 
 public class MainActivity extends AppCompatActivity {
-    private TextView mWelcomeTv;
+
+    private final static String TAG="jsyjst";
     private BoomMenuButton mBmb;
     private TextOutsideCircleButton.Builder mAndroidBuilder, mJavaBuilder, mWebBuilder, mDataBuilder,mRdcBuilder;
     private List<Group> mGroupList = new ArrayList<>();
-    private GroupAdapter mAapter;
+    private GroupAdapter mAdapter;
+
+    private float mRatio;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        CommonUtil.hideStatusBar(this, this, true);
+        CommonUtil.hideStatusBar(this,this,true);
         setContentView(R.layout.activity_main);
 
         initView();
         initBottom();
         initData();
-
-        RecyclerView recyclerView = findViewById(R.id.recycler);
-        //1.4,0.5
-        SkidRightLayoutManager skidRightLayoutManager = new SkidRightLayoutManager(1.175f, 0.35f);
-        recyclerView.setLayoutManager(skidRightLayoutManager);
-        mAapter = new GroupAdapter(this, mGroupList);
-        recyclerView.setAdapter(mAapter);
-        mAapter.setItemOnClick(new GroupAdapter.ItemOnClick() {
-            @Override
-            public void itemOnClick(int position, View v) {
-                Intent intent = new Intent(MainActivity.this, ContentActivity.class);
-                intent.putExtra(GROUP_TYPE, position);
-                startActivity(intent, ActivityOptions.
-                        makeSceneTransitionAnimation(MainActivity.this, v, "group_img").toBundle());
-            }
-        });
     }
 
     private void initData() {
@@ -89,9 +82,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
-//       mWelcomeTv = findViewById(R.id.tv_welcome);
-//        mWelcomeTv.setTypeface(Typefaces.get(this, "chinese.ttf"));
         mBmb = findViewById(R.id.bmb);
+        RecyclerView recyclerView = findViewById(R.id.recycler);
+
+        //1.4,0.5
+        mRatio = (float)(ScreenUtils.getScreenHeight(this))/ScreenUtils.getScreenWidth(this)-0.53f;
+        SkidRightLayoutManager skidRightLayoutManager = new SkidRightLayoutManager(mRatio,0.3f);
+        Log.d(TAG, "initView: "+mRatio
+        +"w:"+ScreenUtils.getScreenWidth(this)+"h:"+ScreenUtils.getScreenHeight(this));
+        recyclerView.setLayoutManager(skidRightLayoutManager);
+        mAdapter = new GroupAdapter(this, mGroupList);
+        recyclerView.setAdapter(mAdapter);
+        mAdapter.setItemOnClick(new GroupAdapter.ItemOnClick() {
+            @Override
+            public void itemOnClick(int position, View v) {
+                Intent intent = new Intent(MainActivity.this, ContentActivity.class);
+                intent.putExtra(GROUP_TYPE, position);
+                startActivity(intent, ActivityOptions.
+                        makeSceneTransitionAnimation(MainActivity.this, v, "group_img").toBundle());
+            }
+        });
     }
 
     private void initBottom() {
@@ -169,4 +179,5 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(ContentActivity.GROUP_TYPE, groupType);
         startActivity(intent);
     }
+
 }

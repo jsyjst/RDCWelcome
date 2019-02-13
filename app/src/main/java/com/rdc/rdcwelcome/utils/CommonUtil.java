@@ -6,6 +6,10 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Build;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.rdc.rdcwelcome.R;
 
@@ -14,6 +18,7 @@ import com.rdc.rdcwelcome.R;
  */
 
 public class CommonUtil {
+
     /*** 状态栏的显示和隐藏
      * @param activity
      * @param context
@@ -33,18 +38,5 @@ public class CommonUtil {
 
         }
     }
-    /**
-     * 获取系统状态栏高度
-     * @param context
-     * @return
-     */
-    public static int getStatusBarHeight(Context context) {
-        int statusBarHeight = 0;
-        Resources res = context.getResources();
-        int resourceId = res.getIdentifier("status_bar_height", "dimen", "android");
-        if (resourceId > 0) {
-            statusBarHeight = res.getDimensionPixelSize(resourceId);
-        }
-        return statusBarHeight;
-    }
+
 }

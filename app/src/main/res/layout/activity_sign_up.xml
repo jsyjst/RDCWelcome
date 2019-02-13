@@ -1,359 +1,364 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
-    android:orientation="vertical"
     tools:context="com.rdc.rdcwelcome.view.SignUpActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/android"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        android:layout_height="match_parent"
+        android:background="@drawable/background"
+        android:scaleType="centerCrop" />
 
-        <TextView
-            android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="安卓报名表"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
-
-    </android.support.v7.widget.Toolbar>
-
-    <ScrollView
-        android:layout_below="@+id/toolbar"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+        android:layout_height="match_parent">
 
-        <LinearLayout
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/android"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="安卓报名表"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+        </android.support.v7.widget.Toolbar>
+
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_below="@+id/toolbar"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-
-            <android.support.v7.widget.CardView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:layout_marginEnd="15dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="35dp"
-                app:cardBackgroundColor="@color/translucent"
-                app:cardCornerRadius="4dp">
+                android:orientation="vertical">
 
-                <LinearLayout
+
+                <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="35dp"
+                    app:cardBackgroundColor="@color/translucent"
+                    app:cardCornerRadius="4dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+
+                            <com.rengwuxian.materialedittext.MaterialEditText
+                                android:id="@+id/edit_name"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="10dp"
+                                android:layout_weight="4"
+                                android:hint="姓名"
+                                android:maxLines="1"
+                                app:met_clearButton="true"
+                                app:met_floatingLabel="highlight"
+                                app:met_floatingLabelText="姓名"
+                                app:met_primaryColor="@color/android" />
+
+                            <com.rengwuxian.materialedittext.MaterialEditText
+                                android:id="@+id/sex"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="10dp"
+                                android:layout_weight="1"
+                                android:hint="性别"
+                                android:maxLength="1"
+                                android:maxLines="1"
+                                app:met_floatingLabel="highlight"
+                                app:met_floatingLabelText="性别" />
+                        </LinearLayout>
 
                         <com.rengwuxian.materialedittext.MaterialEditText
-                            android:id="@+id/edit_name"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:layout_weight="4"
-                            android:hint="姓名"
-                            android:maxLines="1"
+                            android:id="@+id/edit_student_id"
+                            style="@style/EditTextStyle"
+                            android:hint="学号"
+                            android:maxLength="15"
+                            app:met_clearButton="true"
+                            app:met_errorColor="#f10722"
                             app:met_floatingLabel="highlight"
-                            app:met_floatingLabelText="姓名"
-                            app:met_primaryColor="@color/android"
-                            app:met_clearButton="true"/>
+                            app:met_floatingLabelText="学号"
+                            app:met_helperText="输入数字"
+                            app:met_helperTextColor="#f10722"
+                            app:met_maxCharacters="10" />
 
                         <com.rengwuxian.materialedittext.MaterialEditText
-                            android:id="@+id/sex"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:layout_weight="1"
-                            android:hint="性别"
-                            android:maxLength="1"
-                            android:maxLines="1"
+                            android:id="@+id/edit_college"
+                            style="@style/EditTextStyle"
+                            android:hint="学院"
+                            android:maxLength="15"
+                            app:met_clearButton="true"
                             app:met_floatingLabel="highlight"
-                            app:met_floatingLabelText="性别"/>
+                            app:met_floatingLabelText="学院" />
+
+                        <com.rengwuxian.materialedittext.MaterialEditText
+                            android:id="@+id/edit_class"
+                            style="@style/EditTextStyle"
+                            android:hint="班级"
+                            android:maxLength="15"
+                            app:met_clearButton="true"
+                            app:met_floatingLabel="highlight"
+                            app:met_floatingLabelText="班级" />
+
+                        <com.rengwuxian.materialedittext.MaterialEditText
+                            android:id="@+id/edit_work"
+                            style="@style/EditTextStyle"
+                            android:hint="职务"
+                            android:maxLength="15"
+                            app:met_clearButton="true"
+                            app:met_floatingLabel="highlight"
+                            app:met_floatingLabelText="职务" />
+
+
                     </LinearLayout>
+                </android.support.v7.widget.CardView>
 
-                    <com.rengwuxian.materialedittext.MaterialEditText
-                        android:id="@+id/edit_student_id"
-                        style="@style/EditTextStyle"
-                        android:hint="学号"
-                        android:maxLength="15"
-                        app:met_helperText="输入数字"
-                        app:met_helperTextColor="#f10722"
-                        app:met_errorColor="#f10722"
-                        app:met_floatingLabel="highlight"
-                        app:met_floatingLabelText="学号"
-                        app:met_clearButton="true"
-                        app:met_maxCharacters="10" />
-
-                    <com.rengwuxian.materialedittext.MaterialEditText
-                        android:id="@+id/edit_college"
-                        style="@style/EditTextStyle"
-                        android:hint="学院"
-                        android:maxLength="15"
-                        app:met_floatingLabel="highlight"
-                        app:met_floatingLabelText="学院"
-                        app:met_clearButton="true" />
-
-                    <com.rengwuxian.materialedittext.MaterialEditText
-                        android:id="@+id/edit_class"
-                        style="@style/EditTextStyle"
-                        android:hint="班级"
-                        android:maxLength="15"
-                        app:met_floatingLabel="highlight"
-                        app:met_floatingLabelText="班级"
-                        app:met_clearButton="true"
-                        />
-
-                    <com.rengwuxian.materialedittext.MaterialEditText
-                        android:id="@+id/edit_work"
-                        style="@style/EditTextStyle"
-                        android:hint="职务"
-                        android:maxLength="15"
-                        app:met_floatingLabel="highlight"
-                        app:met_floatingLabelText="职务"
-                        app:met_clearButton="true"/>
-
-
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:layout_marginEnd="15dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="30dp"
-                app:cardBackgroundColor="@color/translucent"
-                app:cardCornerRadius="4dp">
-
-                <LinearLayout
+                <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="30dp"
+                    app:cardBackgroundColor="@color/translucent"
+                    app:cardCornerRadius="4dp">
 
-                    <com.rengwuxian.materialedittext.MaterialEditText
-                        android:id="@+id/edit_phone_num"
-                        style="@style/EditTextStyle"
-                        android:hint="手机号码"
-                        android:maxLength="15"
-                        app:met_helperText="输入数字"
-                        app:met_helperTextColor="#f10722"
-                        app:met_errorColor="#f10722"
-                        app:met_floatingLabel="highlight"
-                        app:met_floatingLabelText="手机号码"
-                        app:met_maxCharacters="11"
-                        app:met_minCharacters="11"
-                        app:met_primaryColor="@color/android"
-                        app:met_underlineColor="@color/black_short"
-                        app:met_clearButton="true"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
-                    <com.rengwuxian.materialedittext.MaterialEditText
-                        android:id="@+id/edit_email"
-                        style="@style/EditTextStyle"
-                        android:hint="邮箱"
-                        android:maxLength="17"
-                        app:met_floatingLabel="highlight"
-                        app:met_floatingLabelText="邮箱"
-                        app:met_clearButton="true"/>
+                        <com.rengwuxian.materialedittext.MaterialEditText
+                            android:id="@+id/edit_phone_num"
+                            style="@style/EditTextStyle"
+                            android:hint="手机号码"
+                            android:maxLength="15"
+                            app:met_clearButton="true"
+                            app:met_errorColor="#f10722"
+                            app:met_floatingLabel="highlight"
+                            app:met_floatingLabelText="手机号码"
+                            app:met_helperText="输入数字"
+                            app:met_helperTextColor="#f10722"
+                            app:met_maxCharacters="11"
+                            app:met_minCharacters="11"
+                            app:met_primaryColor="@color/android"
+                            app:met_underlineColor="@color/black_short" />
+
+                        <com.rengwuxian.materialedittext.MaterialEditText
+                            android:id="@+id/edit_email"
+                            style="@style/EditTextStyle"
+                            android:hint="邮箱"
+                            android:maxLength="17"
+                            app:met_clearButton="true"
+                            app:met_floatingLabel="highlight"
+                            app:met_floatingLabelText="邮箱" />
 
 
-                    <com.rengwuxian.materialedittext.MaterialEditText
-                        android:id="@+id/edit_qq"
-                        style="@style/EditTextStyle"
-                        android:hint="QQ"
-                        android:maxLength="15"
-                        app:met_helperText="输入数字"
-                        app:met_helperTextColor="#f10722"
-                        app:met_floatingLabel="highlight"
-                        app:met_floatingLabelText="QQ"
-                        app:met_clearButton="true"/>
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
+                        <com.rengwuxian.materialedittext.MaterialEditText
+                            android:id="@+id/edit_qq"
+                            style="@style/EditTextStyle"
+                            android:hint="QQ"
+                            android:maxLength="15"
+                            app:met_clearButton="true"
+                            app:met_floatingLabel="highlight"
+                            app:met_floatingLabelText="QQ"
+                            app:met_helperText="输入数字"
+                            app:met_helperTextColor="#f10722" />
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/card_sign_direction"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:layout_marginEnd="15dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="30dp"
-                app:cardBackgroundColor="@color/translucent"
-                app:cardCornerRadius="4dp">
-
-                <LinearLayout
+                <android.support.v7.widget.CardView
+                    android:id="@+id/card_sign_direction"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="30dp"
+                    app:cardBackgroundColor="@color/translucent"
+                    app:cardCornerRadius="4dp">
 
-                    <TextView
-                        android:layout_margin="10dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:text="报名方向：" />
-
-                    <RadioGroup
-                        android:id="@+id/radio_group"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:gravity="center_horizontal"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
 
-                        <com.rey.material.widget.RadioButton
-                            android:id="@+id/rb_java"
-                            style="@style/Material.Drawable.RadioButton"
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:layout_marginStart="10dp"
-                            android:text="后台"
-                            android:checked="true"
-                            app:rbd_strokeColor="@color/java"
-                           />
+                            android:layout_gravity="center_vertical"
+                            android:layout_margin="10dp"
+                            android:text="报名方向："
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
 
-                        <com.rey.material.widget.RadioButton
-                            android:id="@+id/rb_web"
-                            style="@style/Material.Drawable.RadioButton"
-                            android:layout_width="wrap_content"
+                        <RadioGroup
+                            android:id="@+id/radio_group"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="前端"
-                            android:checked="false"
-                            android:layout_marginStart="5dp"
-                            app:rbd_strokeColor="@color/web"/>
+                            android:layout_marginBottom="10dp"
+                            android:gravity="center_horizontal"
+                            android:orientation="horizontal">
 
-                        <com.rey.material.widget.RadioButton
-                            android:id="@+id/rb_android"
-                            style="@style/Material.Drawable.RadioButton"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="Android"
-                            android:checked="false"
-                            android:layout_marginStart="5dp"
-                            app:rbd_strokeColor="@color/android"/>
+                            <com.rey.material.widget.RadioButton
+                                android:id="@+id/rb_java"
+                                style="@style/Material.Drawable.RadioButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:checked="true"
+                                android:gravity="center"
+                                android:text="后台"
+                                app:rbd_strokeColor="@color/java" />
 
-                        <com.rey.material.widget.RadioButton
-                            android:id="@+id/rb_data"
-                            style="@style/Material.Drawable.RadioButton"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:checked="false"
-                            android:layout_marginStart="5dp"
-                            app:rbd_strokeColor="@color/data"
-                            android:text="大数据" />
-                    </RadioGroup>
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
+                            <com.rey.material.widget.RadioButton
+                                android:id="@+id/rb_web"
+                                style="@style/Material.Drawable.RadioButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:checked="false"
+                                android:gravity="center"
+                                android:text="前端"
+                                app:rbd_strokeColor="@color/web" />
 
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:layout_marginEnd="15dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="30dp"
-                app:cardBackgroundColor="@color/translucent"
-                app:cardCornerRadius="4dp">
+                            <com.rey.material.widget.RadioButton
+                                android:id="@+id/rb_android"
+                                style="@style/Material.Drawable.RadioButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:checked="false"
+                                android:gravity="center"
+                                android:text="Android"
+                                app:rbd_strokeColor="@color/android" />
 
-                <LinearLayout
+                            <com.rey.material.widget.RadioButton
+                                android:id="@+id/rb_data"
+                                style="@style/Material.Drawable.RadioButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:checked="false"
+                                android:gravity="center"
+                                android:text="大数据"
+                                app:rbd_strokeColor="@color/data" />
+                        </RadioGroup>
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="30dp"
+                    app:cardBackgroundColor="@color/translucent"
+                    app:cardCornerRadius="4dp">
 
-                    <com.rengwuxian.materialedittext.MaterialEditText
-                        android:id="@+id/edit_skill"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:hint="特长"
-                        app:met_baseColor="@color/black"
-                        app:met_floatingLabel="highlight"
-                        app:met_floatingLabelText="特长"
-                        app:met_clearButton="true"/>
+                        android:orientation="vertical">
 
-                    <com.rengwuxian.materialedittext.MaterialEditText
-                        android:id="@+id/edit_introduction"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:hint="自我介绍"
-                        app:met_floatingLabel="highlight"
-                        app:met_floatingLabelText="自我介绍"
-                        app:met_clearButton="true"/>
+                        <com.rengwuxian.materialedittext.MaterialEditText
+                            android:id="@+id/edit_skill"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:hint="特长"
+                            app:met_baseColor="@color/black"
+                            app:met_clearButton="true"
+                            app:met_floatingLabel="highlight"
+                            app:met_floatingLabelText="特长" />
 
-                    <com.rengwuxian.materialedittext.MaterialEditText
-                        android:id="@+id/edit_hope"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:hint="期望"
-                        app:met_floatingLabel="highlight"
-                        app:met_floatingLabelText="期望"
-                        app:met_clearButton="true"/>
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
+                        <com.rengwuxian.materialedittext.MaterialEditText
+                            android:id="@+id/edit_introduction"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:hint="自我介绍"
+                            app:met_clearButton="true"
+                            app:met_floatingLabel="highlight"
+                            app:met_floatingLabelText="自我介绍" />
 
-            <com.dd.CircularProgressButton
-                android:layout_gravity="center_horizontal"
-                android:id="@+id/circularButton_submit"
-                android:layout_width="196dp"
-                android:layout_height="64dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
-                android:textColor="@color/cpb_white"
-                android:textSize="18sp"
-                app:cpb_cornerRadius="48dp"
-                app:cpb_textComplete="@string/success"
-                app:cpb_textError="@string/error"
-                app:cpb_textIdle="@string/submit"
-               />
+                        <com.rengwuxian.materialedittext.MaterialEditText
+                            android:id="@+id/edit_hope"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:hint="期望"
+                            app:met_clearButton="true"
+                            app:met_floatingLabel="highlight"
+                            app:met_floatingLabelText="期望" />
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <com.dd.CircularProgressButton
+                    android:id="@+id/circularButton_submit"
+                    android:layout_width="196dp"
+                    android:layout_height="64dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/cpb_white"
+                    android:textSize="18sp"
+                    app:cpb_cornerRadius="48dp"
+                    app:cpb_textComplete="@string/success"
+                    app:cpb_textError="@string/error"
+                    app:cpb_textIdle="@string/submit" />
 
 
+            </LinearLayout>
 
-        </LinearLayout>
 
+        </ScrollView>
 
-    </ScrollView>
-    <com.github.glomadrian.grav.GravView
-        android:id="@+id/grav"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        app:colorGenerator="com.github.glomadrian.grav.generator.paint.ArrayColorGenerator"
-        app:array_colors="@array/bubble"
-        app:pointGenerator="com.github.glomadrian.grav.generator.point.RegularPointGenerator"
-        app:regular_cell_size="300"
-        app:regular_variance="200"
-        app:gravGenerator="com.github.glomadrian.grav.generator.grav.BallGenerator"
-        app:ball_from_size="10dp"
-        app:ball_to_size="20dp"
-        app:animationGenerators="@array/BubbleAnimations"
-        app:side_to_side_min_duration="10000"
-        app:side_to_side_max_duration="10000"
-        app:side_to_side_direction="leftToRight"
-        app:shake_direction="vertical"
-        app:shake_min_duration="10000"
-        app:shake_max_duration="20000"
-        app:shake_variance="500dp"
-        />
-
-</RelativeLayout>
+        <com.github.glomadrian.grav.GravView
+            android:id="@+id/grav"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            app:animationGenerators="@array/BubbleAnimations"
+            app:array_colors="@array/bubble"
+            app:ball_from_size="10dp"
+            app:ball_to_size="20dp"
+            app:colorGenerator="com.github.glomadrian.grav.generator.paint.ArrayColorGenerator"
+            app:gravGenerator="com.github.glomadrian.grav.generator.grav.BallGenerator"
+            app:pointGenerator="com.github.glomadrian.grav.generator.point.RegularPointGenerator"
+            app:regular_cell_size="300"
+            app:regular_variance="200"
+            app:shake_direction="vertical"
+            app:shake_max_duration="20000"
+            app:shake_min_duration="10000"
+            app:shake_variance="500dp"
+            app:side_to_side_direction="leftToRight"
+            app:side_to_side_max_duration="10000"
+            app:side_to_side_min_duration="10000" />
+    </RelativeLayout>
+</FrameLayout>

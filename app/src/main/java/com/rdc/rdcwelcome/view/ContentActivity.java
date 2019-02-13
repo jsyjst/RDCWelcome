@@ -1,10 +1,9 @@
 package com.rdc.rdcwelcome.view;
 
 import android.app.ActivityOptions;
+import android.app.Instrumentation;
 import android.content.Intent;
 import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.graphics.Typeface;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -13,19 +12,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.transition.Slide;
-import android.transition.Transition;
-import android.transition.TransitionInflater;
-import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.TextView;
 
 
-import com.rdc.constant.Content;
+import com.rdc.rdcwelcome.constant.Content;
 import com.rdc.rdcwelcome.R;
-import com.rdc.rdcwelcome.utils.CommonUtil;
 import com.rdc.rdcwelcome.utils.Typefaces;
 
 
@@ -81,7 +76,16 @@ public class ContentActivity extends AppCompatActivity {
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                new Thread () {
+                    public void run () {
+                        try {
+                            Instrumentation inst= new Instrumentation();
+                            inst.sendKeyDownUpSync(KeyEvent. KEYCODE_BACK);
+                        } catch(Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }.start();
             }
         });
 
@@ -109,7 +113,7 @@ public class ContentActivity extends AppCompatActivity {
         mGroupContent.setText(Content.CONTENT[mGroupType]);
         mGroupImg.setImageResource(Content.IMG[mGroupType]);
 
-        if(mGroupType == 0){
+        if(mGroupType == 0 || mGroupType == 1){
             mToolbar.setNavigationIcon(R.drawable.back);
             mCollapsingTool.setCollapsedTitleTextColor(getResources().getColor(R.color.rdc_back));
         }

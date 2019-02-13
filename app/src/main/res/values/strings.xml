@@ -3,4 +3,6 @@
     <string name="submit">开启研发之旅</string>
     <string name="error">塞车中，请重新开启</string>
     <string name="success">你的旅途已开启</string>
+    <string name="welcome_text">研发中心</string>
+    <string name="welcome_second_text">2019正在招新</string>
 </resources>

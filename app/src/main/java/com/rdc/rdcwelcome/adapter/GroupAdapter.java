@@ -1,4 +1,4 @@
-package com.rdc.adapter;
+package com.rdc.rdcwelcome.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -10,8 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
-import com.rdc.constant.Content;
-import com.rdc.entiy.Group;
+import com.rdc.rdcwelcome.constant.Content;
+import com.rdc.rdcwelcome.entiy.Group;
 import com.rdc.rdcwelcome.R;
 import com.rdc.rdcwelcome.utils.Typefaces;
 

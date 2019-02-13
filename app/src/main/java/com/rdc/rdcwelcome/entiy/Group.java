@@ -1,4 +1,4 @@
-package com.rdc.entiy;
+package com.rdc.rdcwelcome.entiy;
 
 /**
  * Created by 残渊 on 2018/11/7.

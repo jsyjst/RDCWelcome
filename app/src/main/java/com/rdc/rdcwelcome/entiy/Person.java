@@ -1,4 +1,4 @@
-package com.rdc.entiy;
+package com.rdc.rdcwelcome.entiy;
 
 import cn.bmob.v3.BmobObject;
 

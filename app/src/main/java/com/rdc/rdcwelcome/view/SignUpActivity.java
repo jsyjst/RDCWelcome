@@ -4,18 +4,14 @@ import android.Manifest;
 import android.animation.ValueAnimator;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
-import android.transition.Fade;
-import android.transition.Slide;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
-import android.transition.TransitionSet;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -25,8 +21,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dd.CircularProgressButton;
-import com.rdc.constant.Content;
-import com.rdc.entiy.Person;
+import com.rdc.rdcwelcome.constant.Content;
+import com.rdc.rdcwelcome.entiy.Person;
 import com.rdc.rdcwelcome.R;
 import com.rdc.rdcwelcome.utils.Typefaces;
 import com.rengwuxian.materialedittext.MaterialEditText;
@@ -137,33 +133,27 @@ public class SignUpActivity extends AppCompatActivity {
         circularButtonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (ContextCompat.checkSelfPermission(SignUpActivity.this,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(SignUpActivity.this,
-                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                if (circularButtonSubmit.getProgress() == 100 || circularButtonSubmit.getProgress() == -1) {
+                    circularButtonSubmit.setProgress(0);
                 } else {
-                    if (circularButtonSubmit.getProgress() == 100 || circularButtonSubmit.getProgress() == -1) {
-                        circularButtonSubmit.setProgress(0);
+                    if (getString(editName).equals("")
+                            || getString(editSex).equals("")
+                            || getString(editStudentId).equals("")
+                            || getString(editCollege).equals("")
+                            || getString(editClass).equals("")
+                            || getString(editPhoneNum).equals("")
+                            || getString(editWork).equals("")
+                            || getString(editQq).equals("")
+                            || getString(editEmail).equals("")
+                            || getString(editSkill).equals("")
+                            || getString(editIntroduction).equals("")
+                            || getString(editHope).equals("")) {
+                        Toast.makeText(SignUpActivity.this, "旅途未开启，请补全报名表", Toast.LENGTH_SHORT).show();
+                    } else if (!editStudentId.validate() || !editPhoneNum.validate() || !editQq.validate()) {
+                        Toast.makeText(SignUpActivity.this, "学号、手机号码、QQ"
+                                + numValidator.getErrorMessage(), Toast.LENGTH_SHORT).show();
                     } else {
-                        if (getString(editName).equals("")
-                                || getString(editSex).equals("")
-                                ||getString(editStudentId).equals("")
-                                ||getString(editCollege).equals("")
-                                ||getString(editClass).equals("")
-                                ||getString(editPhoneNum).equals("")
-                                ||getString(editWork).equals("")
-                                ||getString(editQq).equals("")
-                                ||getString(editEmail).equals("")
-                                ||getString(editSkill).equals("")
-                                ||getString(editIntroduction).equals("")
-                                ||getString(editHope).equals("")){
-                            Toast.makeText(SignUpActivity.this, "旅途未开启，请补全报名表", Toast.LENGTH_SHORT).show();
-                        } else if(!editStudentId.validate()||!editPhoneNum.validate()||!editQq.validate()){
-                            Toast.makeText(SignUpActivity.this,"学号、手机号码、QQ"
-                                    +numValidator.getErrorMessage(),Toast.LENGTH_SHORT).show();
-                        } else {
-                            upLoadBmob();
-                        }
+                        upLoadBmob();
                     }
                 }
             }
@@ -171,8 +161,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void setColor() {
-
-
+        
         mTitle.setText(Content.NAME_SIGN[mGroupType] + "报名表");
         mToolbar.setBackgroundResource(Content.COLOR[mGroupType]);
         getWindow().setStatusBarColor(getResources().getColor(Content.COLOR[mGroupType]));
@@ -190,7 +179,7 @@ public class SignUpActivity extends AppCompatActivity {
         editIntroduction.setPrimaryColor(getResources().getColor(Content.COLOR[mGroupType]));
         editHope.setPrimaryColor(getResources().getColor(Content.COLOR[mGroupType]));
         //只能输入数字
-        numValidator = new RegexpValidator("只能输入数字","\\d+");
+        numValidator = new RegexpValidator("只能输入数字", "\\d+");
         editStudentId.addValidator(numValidator);
         editPhoneNum.addValidator(numValidator);
         editQq.addValidator(numValidator);
@@ -273,43 +262,6 @@ public class SignUpActivity extends AppCompatActivity {
         return editText.getText().toString().trim();
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        switch (requestCode) {
-            case 1:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    if (circularButtonSubmit.getProgress() == 100 || circularButtonSubmit.getProgress() == -1) {
-                        circularButtonSubmit.setProgress(0);
-                    } else {
-                        Log.d(TAG, "onRequestPermissionsResult: ");
-                        if (getString(editName).equals("")
-                                || getString(editSex).equals("")
-                                ||getString(editStudentId).equals("")
-                                ||getString(editCollege).equals("")
-                                ||getString(editClass).equals("")
-                                ||getString(editPhoneNum).equals("")
-                                ||getString(editWork).equals("")
-                                ||getString(editQq).equals("")
-                                ||getString(editEmail).equals("")
-                                ||getString(editSkill).equals("")
-                                ||getString(editIntroduction).equals("")
-                                ||getString(editHope).equals("") ){
-                            Toast.makeText(SignUpActivity.this, "旅途未开启，请补全报名表", Toast.LENGTH_SHORT).show();
-                        } else if(!editStudentId.validate()||!editPhoneNum.validate()||!editQq.validate()){
-                            Toast.makeText(SignUpActivity.this,"学号、手机号码、QQ"
-                                    +numValidator.getErrorMessage(),Toast.LENGTH_SHORT).show();
-                        }else {
-                            upLoadBmob();
-                        }
-                    }
-                } else {
-                    Toast.makeText(this, "未获取到权限无法提交", Toast.LENGTH_SHORT).show();
-                }
-                break;
-            default:
-                break;
-        }
-    }
 
     //设置提交成功的动画
     private void simulateSuccessProgress(final CircularProgressButton button) {
@@ -345,7 +297,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void setupWindowAnimations() {
-        Transition slide= TransitionInflater.from(this).inflateTransition(R.transition.slide_right);
+        Transition slide = TransitionInflater.from(this).inflateTransition(R.transition.slide_right);
         getWindow().setEnterTransition(slide);
     }
 

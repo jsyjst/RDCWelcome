@@ -48,7 +48,7 @@ public class Titanic {
                 ObjectAnimator maskYAnimator = ObjectAnimator.ofFloat(textView, "maskY", h/2, - h/2);
                 maskYAnimator.setRepeatCount(ValueAnimator.INFINITE);
                 maskYAnimator.setRepeatMode(ValueAnimator.REVERSE);
-                maskYAnimator.setDuration(7000);
+                maskYAnimator.setDuration(3000);
                 maskYAnimator.setStartDelay(0);
 
                 // now play both animations together
