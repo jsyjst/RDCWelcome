@@ -161,7 +161,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void setColor() {
-        
+
         mTitle.setText(Content.NAME_SIGN[mGroupType] + "报名表");
         mToolbar.setBackgroundResource(Content.COLOR[mGroupType]);
         getWindow().setStatusBarColor(getResources().getColor(Content.COLOR[mGroupType]));
