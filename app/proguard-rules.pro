@@ -83,9 +83,81 @@
 }
 
 
+# 对于带有回调函数的onXXEvent、**On*Listener的，不能被混淆
+-keepclassmembers class * {
+    void *(**On*Event);
+    void *(**On*Listener);
+}
+
+# 保留view的get和set方法, 执行属性动画时需要
+-keepclassmembers public class * extends android.view.View {
+   void set*(***);
+   *** get*();
+}
+
+
+# 保留在Activity中的方法参数是view的方法，
+-keepclassmembers class * extends android.app.Activity{
+    public void *(android.view.View);
+}
+# 表示对android.support包下的代码不警告
+
+# 因为support包中有很多代码都是在高版本中使用的，
+
+# 如果我们的项目指定的版本比较低在打包时就会给予警告，
+
+# 不过support包中所有的代码都在版本兼容性上做足了判断，
+
+# 因此不用担心代码会出问题，所以直接忽略警告就可以了。
+
+-dontwarn android.support.**
+
+
+
+# Understand the @Keep support annotation.
+
+-keep class android.support.annotation.Keep
+-keep @android.support.annotation.Keep class * {*;}
+-keepclasseswithmembers class * {
+    @android.support.annotation.Keep <methods>;
+}
+
+-keepclasseswithmembers class * {
+    @android.support.annotation.Keep <fields>;
+}
+-keepclasseswithmembers class * {
+    @android.support.annotation.Keep <init>(...);
+}
+
+
 
 ###################################### 第三方库 ##################################
 ### Litpal
 -keep class org.litepal.** { *;}
 -keep class * extends org.litepal.crud.DataSupport { *;}
 -keep class * extends org.litepal.crud.LitePalSupport { *;}
+
+
+### Okio
+# Animal Sniffer compileOnly dependency to ensure APIs are compatible with older versions of Java.
+-dontwarn org.codehaus.mojo.animal_sniffer.*
+
+
+
+### RxJava RxAndroid
+-dontwarn sun.misc.**
+-keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
+    long producerIndex;
+    long consumerIndex;
+}
+-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueProducerNodeRef {
+    rx.internal.util.atomic.LinkedQueueNode producerNode;
+}
+-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueConsumerNodeRef {
+    rx.internal.util.atomic.LinkedQueueNode consumerNode;
+}
+
+
+### grav
+-keep class com.github.glomadrian.grav.**{*;}
+
